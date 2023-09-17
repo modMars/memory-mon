@@ -1,8 +1,4 @@
 #root {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
 	margin: 0 auto;
 	padding: 0;
 	text-align: center;
@@ -18,4 +14,42 @@
 
 .flipped {
 	transform: scaleX(-1);
+}
+
+.atropos-inner {
+	pointer-events: none;
+}
+
+.atropos-rotate {
+	pointer-events: none;
+}
+
+.lostBg {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-image: url('./assets/pikaSad.gif');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	filter: brightness(35%);
+	border-radius: 5px;
+	z-index: -1;
+}
+
+.wonBg {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background-image: url('./assets/happyPika.gif');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	filter: brightness(35%);
+	border-radius: 5px;
+	z-index: -1;
+}
+
+.disabled {
+	pointer-events: none;
 }

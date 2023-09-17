@@ -1,4 +1,5 @@
-const pokemonID = [25, 6, 94, 143, 133, 38, 445, 448, 150, 131, 149, 7, 61, 39, 129, 330, 4, 152, 768, 334]
+const pokemonID = [25, 6, 94, 143, 133, 38, 445, 448, 150, 131]
+
 const pickRandomPokemon = pokemon => {
 	let newArr = []
 	let contains = {}

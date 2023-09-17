@@ -1,8 +1,8 @@
 const Game = (() => {
 	let score = 0
 	let chosenCards = {}
-	const setScore = newScore => {
-		score = newScore
+	const resetScore = () => {
+		score = 0
 	}
 	const addScore = () => {
 		score++
@@ -16,12 +16,17 @@ const Game = (() => {
 		return chosenCards
 	}
 
-	const updatePickedCards = card => {
-		console.log(card)
+	const checkAndUpdate = card => {
 		chosenCards[card] = true
 	}
 
-	return { score, addScore, setScore, getScore, getPickedCards, updatePickedCards, chosenCards }
+	const resetCards = () => {
+		Object.keys(chosenCards).forEach(key => {
+			delete chosenCards[key]
+		})
+	}
+
+	return { score, addScore, resetScore, getScore, getPickedCards, checkAndUpdate, chosenCards, resetCards }
 })()
 
 export { Game }

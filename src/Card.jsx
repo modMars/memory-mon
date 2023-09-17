@@ -2,7 +2,10 @@ import './assets/bg.png'
 import './Card.css'
 export default function Cards({ name, img, types, id }) {
 	return (
-		<div className='card max-w-xs border rounded-lg shadow-2xl pointer-events-none' data-atropos-offset='1'>
+		<figure
+			className='card max-w-xs border rounded-lg shadow-2xl pointer-events-none max-md:max-w-[250px] max-sm:max-w-[200px]'
+			data-atropos-offset='1'
+		>
 			<img
 				className='rounded-t-lg pointer-events-none'
 				src={img}
@@ -18,12 +21,12 @@ export default function Cards({ name, img, types, id }) {
 				>
 					{name}
 				</h5>
-				<div className='flex justify-evenly'>
+				<div className='flex justify-evenly gap-4'>
 					{types.map(type => {
 						return (
 							<span
 								key={id}
-								className={`text-b rounded-xl px-5 py-1 my-2 mt-10 uppercase font-bold text-white border border-slate-50 outline outline-1 outline-slate-900 ${type.type.name}`}
+								className={`text-b rounded-xl px-5 py-1 my-2 mt-10 uppercase font-bold text-white border border-slate-50 outline outline-1 outline-slate-900 ${type.type.name} max-sm:px-2 max-sm:text-xs`}
 								data-atropos-offset='8'
 							>
 								{type.type.name}
@@ -32,6 +35,6 @@ export default function Cards({ name, img, types, id }) {
 					})}
 				</div>
 			</div>
-		</div>
+		</figure>
 	)
 }

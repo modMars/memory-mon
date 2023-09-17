@@ -1,22 +1,27 @@
-const Game = ((score = 0) => {
+const Game = (() => {
+	let score = 0
+	let chosenCards = {}
 	const setScore = newScore => {
 		score = newScore
 	}
 	const addScore = () => {
 		score++
 	}
-	return { score, addScore, setScore }
+
+	const getScore = () => {
+		return score
+	}
+
+	const getPickedCards = () => {
+		return chosenCards
+	}
+
+	const updatePickedCards = card => {
+		console.log(card)
+		chosenCards[card] = true
+	}
+
+	return { score, addScore, setScore, getScore, getPickedCards, updatePickedCards, chosenCards }
 })()
 
-const Player = name => {
-	let hiscore = 0
-	setHighScore = newScore => {
-		if (newScore > hiscore) hiscore = newScore
-	}
-	return { name, hiscore }
-}
-
-const newGame = Game
-newGame.setScore(5)
-newGame.addScore
-console.log(newGame)
+export { Game }

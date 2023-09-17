@@ -1,21 +1,33 @@
+import 'atropos/css'
+import Atropos from 'atropos/react'
 import { useEffect, useState } from 'react'
+import { v4 as uuidv4 } from 'uuid'
 import './App.css'
 import Cards from './Card'
+import LoadingScreen from './LoadingScreen'
 import Navbar from './Navbar'
+import Score from './Score'
+import { Game } from './game'
+import { pickRandomPokemon, pokemonID } from './pokemon'
 
-const pokemonID = [25, 6, 94, 143, 133, 38, 445, 448, 150, 131, 149, 7, 61, 39, 129]
+const newGame = Game
 
 function App() {
 	const [pokemon, setPokemon] = useState([])
 	const [isFetched, setIsFetched] = useState(false)
 	const [randomPokes, setRandomPokes] = useState([])
+
 	useEffect(() => {
 		const fetchData = async () => {
 			const fetchPromises = pokemonID.map(async id => {
 				const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
 				const data = await res.json()
-				console.log(data)
-				return { name: data.name, sprite: data.sprites.other['official-artwork'].front_default, types: data.types }
+				return {
+					name: data.name,
+					sprite: data.sprites.other['official-artwork'].front_default,
+					types: data.types,
+					id: uuidv4(),
+				}
 			})
 
 			try {
@@ -31,36 +43,38 @@ function App() {
 
 	useEffect(() => {
 		if (isFetched === true) {
-			let newArr = []
-			let contains = {}
-			while (newArr.length < 5) {
-				let rnd = Math.floor(Math.random() * 15)
-				if (contains[rnd] === undefined) {
-					newArr.push(rnd)
-					contains[rnd] = true
-				}
-			}
-			const randomPokemon = [
-				pokemon[newArr[0]],
-				pokemon[newArr[1]],
-				pokemon[newArr[2]],
-				pokemon[newArr[3]],
-				pokemon[newArr[4]],
-			]
-			setRandomPokes(randomPokemon)
+			setRandomPokes(pickRandomPokemon(pokemon))
 		}
 	}, [isFetched])
+
+	const handleClick = e => {
+		newGame.updatePickedCards(e.target.parentElement.attributes.name.nodeValue)
+		console.log(newGame.getPickedCards())
+		setRandomPokes(pickRandomPokemon(pokemon))
+	}
+
 	return (
 		<>
-			{' '}
-			<Navbar></Navbar>
-			<div className='flex flex-wrap justify-evenly gap-6 bg-green-400 min-h-[30rem] w-full max-w[1260px] h-full p-4'>
-				{randomPokes &&
-					randomPokes.map(pkmnObject => {
-						console.log(pkmnObject)
-						return <Cards name={pkmnObject.name} img={pkmnObject.sprite} types={pkmnObject.types}></Cards>
-					})}
-			</div>
+			{!isFetched ? (
+				<>
+					<LoadingScreen></LoadingScreen>
+				</>
+			) : (
+				<>
+					<Navbar></Navbar>
+					<Score currentScore='0'></Score>
+					<main className='flex flex-wrap justify-evenly min-h-[30rem] w-full max-w[30rem] h-full p-4 gap-8'>
+						{randomPokes &&
+							randomPokes.map(pkmnObject => {
+								return (
+									<Atropos activeOffset={80} className='cursor-pointer' onClick={handleClick} name={pkmnObject.name}>
+										<Cards name={pkmnObject.name} img={pkmnObject.sprite} types={pkmnObject.types}></Cards>
+									</Atropos>
+								)
+							})}
+					</main>
+				</>
+			)}
 		</>
 	)
 }

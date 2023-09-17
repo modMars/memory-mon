@@ -1,7 +1,7 @@
 export default function Navbar() {
 	return (
-		<nav className='flex justify-between items-center px-40'>
-			<h1 className='text-xl text-center'>Memory-mon</h1>
+		<nav className='flex justify-between px-40 w-full'>
+			<h1 className='text-3xl text-center'>Memory-mon</h1>
 			<svg
 				version='1.1'
 				id='Pokéball'
@@ -12,7 +12,7 @@ export default function Navbar() {
 				viewBox='0 0 595.3 594.1'
 				style={{ enableBackground: 'new 0 0 595.3 594.1' }}
 				xmlSpace='preserve'
-				className='w-12'
+				className='w-16'
 			>
 				<g id='Pokéball_1_'>
 					<g id='Colours'>

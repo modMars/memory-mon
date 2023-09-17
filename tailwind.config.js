@@ -2,7 +2,18 @@
 export default {
 	content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
 	theme: {
-		extend: {},
+		extend: {
+			fontFamily: {
+				geo: ['Geo', 'sans-serif'],
+			},
+			backgroundImage: {
+				cardbg: "url('../assets/bg.png')",
+			},
+			colors: {
+				fg: '#18162f',
+				bg: '#fcfff5',
+			},
+		},
 	},
 	plugins: [],
 }

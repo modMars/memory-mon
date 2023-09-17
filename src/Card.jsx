@@ -1,15 +1,31 @@
+import './assets/bg.png'
 import './Card.css'
-export default function Cards({ name, img, types }) {
+export default function Cards({ name, img, types, id }) {
 	return (
-		<div className='max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 cursor-pointer hover:-translate-y-2 transition-transform'>
-			<img className='rounded-t-lg' src={img} alt='' />
-			<div className='p-5'>
-				<h5 className='mb-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white capitalize'>{name}</h5>
+		<div className='card max-w-xs border rounded-lg shadow-2xl pointer-events-none' data-atropos-offset='1'>
+			<img
+				className='rounded-t-lg pointer-events-none'
+				src={img}
+				alt=''
+				data-atropos-offset='1.5'
+				width='318'
+				height='318'
+			/>
+			<div className='p-5 pointer-events-none'>
+				<h5
+					className='mb-2 text-3xl font-bold tracking-wide text-fg dark:text-white capitalize drop-shadow-md'
+					data-atropos-offset='2'
+				>
+					{name}
+				</h5>
 				<div className='flex justify-evenly'>
 					{types.map(type => {
-						console.log(type)
 						return (
-							<span className={`text-xl rounded-xl px-5 py-1 my-2 capitalize font-bold ${type.type.name}`}>
+							<span
+								key={id}
+								className={`text-b rounded-xl px-5 py-1 my-2 mt-10 uppercase font-bold text-white border border-slate-50 outline outline-1 outline-slate-900 ${type.type.name}`}
+								data-atropos-offset='8'
+							>
 								{type.type.name}
 							</span>
 						)

@@ -1,15 +1,32 @@
 #root {
+	position: relative;
 	margin: 0 auto;
 	padding: 0;
 	text-align: center;
 	width: 100%;
 	min-height: 100svh;
-	background-color: #18162f;
+	overflow-x: hidden;
+	background: transparent;
 	color: #fcfff5;
+}
+
+.bg-wrapper {
+	background-image: url(../src/assets/mainBg.jpg);
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+}
+
+.atropos {
+	transition: opacity 0.3s ease-in-out;
 }
 
 .card {
 	background-image: url(./assets/bg.png);
+}
+
+.card-clicked {
+	opacity: 0;
 }
 
 .flipped {
@@ -22,6 +39,20 @@
 
 .atropos-rotate {
 	pointer-events: none;
+}
+
+.won.appear,
+.lost.appear {
+	animation: appear 0.25s ease forwards;
+}
+
+@keyframes appear {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }
 
 .lostBg {

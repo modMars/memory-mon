@@ -1,7 +1,9 @@
 export default function Navbar() {
 	return (
 		<nav className='flex gap-4 justify-between px-40 py-10 mb-12 w-full max-sm:justify-center max-sm:px-0'>
-			<h1 className='text-3xl self-center max-sm:hidden'>Memory-mon</h1>
+			<h1 className='text-3xl self-center max-sm:hidden text-white font-bold drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]'>
+				Memory-mon
+			</h1>
 			<div>
 				<svg
 					version='1.1'

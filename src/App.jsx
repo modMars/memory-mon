@@ -2,24 +2,25 @@ import 'atropos/css'
 import Atropos from 'atropos/react'
 import { useEffect, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import './App.css'
-import Cards from './Card'
-import EndScreens from './EndScreens'
-import LoadingScreen from './LoadingScreen'
-import Navbar from './Navbar'
-import Score from './Score'
-import { Game } from './game'
-import { clearPokemonID, fillPokemonID, pickRandomPokemon, pokemonID } from './pokemon'
+import Cards from './components/Card'
+import EndScreens from './components/EndScreens'
+import LoadingScreen from './components/LoadingScreen'
+import Navbar from './components/Navbar'
+import Score from './components/Score'
+import { Game } from './modules/game'
+import { fillPokemonID, pickRandomPokemon, pokemonID } from './modules/pokemon'
+import './style/App.css'
 
-//Create a new game so we can access the IIFE's
-const newGame = Game
+//Toggle card visibility
 const handleAnimation = cards => {
 	cards.forEach(card => {
 		card.classList.toggle('card-clicked')
 		card.classList.toggle('disabled')
 	})
 }
-fillPokemonID(6)
+
+//Add 8 random pokemon to the ID's array
+fillPokemonID(8)
 
 function App() {
 	const [pokemon, setPokemon] = useState([])
@@ -53,12 +54,14 @@ function App() {
 		fetchData()
 	}, [pokemonID])
 
+	//Update random pokemon state once the fetch effect ends it's process
 	useEffect(() => {
 		if (isFetched === true) {
 			setRandomPokes(pickRandomPokemon(pokemon))
 		}
 	}, [isFetched])
 
+	//On click update score, check if the score is a winner, and scramble the cards on screen
 	const handleClick = e => {
 		const currentCard = e.target.parentElement.attributes.name.nodeValue
 		if (Game.chosenCards[currentCard] != true) {
@@ -77,6 +80,7 @@ function App() {
 		} else setLostGame(true)
 	}
 
+	//Reset game score, reset the cards the user picked, reset lost/won status and scramble cards on screen
 	const handleRestart = e => {
 		const cards = document.querySelectorAll('.atropos')
 		Game.resetScore()
@@ -92,6 +96,7 @@ function App() {
 
 	return (
 		<>
+			{/* If the fetching status isn't done yet render a loading screen, else render the game */}
 			{!isFetched ? (
 				<>
 					<LoadingScreen></LoadingScreen>
@@ -118,6 +123,7 @@ function App() {
 					</main>
 				</>
 			)}
+			{/* Depending on the game status we render the victory or defeat screen */}
 			{lostGame && (
 				<>
 					<EndScreens text='YOU LOST!' status='lost' statusBg='lostBg' handleRestart={handleRestart}></EndScreens>

@@ -1,5 +1,4 @@
-import './assets/bg.png'
-import './Card.css'
+import '../style/Card.css'
 export default function Cards({ name, img, types, id }) {
 	return (
 		<figure

@@ -8,10 +8,6 @@ const fillPokemonID = amount => {
 	}
 }
 
-const clearPokemonID = () => {
-	pokemonID.length = 0
-}
-
 //Returns a 5 pokemon array with no duplicates
 const pickRandomPokemon = pokemon => {
 	let newArr = []
@@ -23,14 +19,12 @@ const pickRandomPokemon = pokemon => {
 			contains[rnd] = true
 		}
 	}
-	const randomPokemon = [
-		pokemon[newArr[0]],
-		pokemon[newArr[1]],
-		pokemon[newArr[2]],
-		pokemon[newArr[3]],
-		pokemon[newArr[4]],
-	]
+	//Fill an array with
+	const randomPokemon = []
+	newArr.forEach(element => {
+		randomPokemon.push(pokemon[element])
+	})
 	return randomPokemon
 }
 
-export { clearPokemonID, fillPokemonID, pickRandomPokemon, pokemonID }
+export { fillPokemonID, pickRandomPokemon, pokemonID }

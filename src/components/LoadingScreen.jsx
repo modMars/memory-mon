@@ -1,5 +1,3 @@
-import './assets/pika.gif'
-
 export default function LoadingScreen() {
 	return (
 		<>

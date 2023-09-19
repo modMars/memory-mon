@@ -15,7 +15,7 @@ export default function Cards({ name, img, types, id }) {
 			/>
 			<div className='p-5 pointer-events-none'>
 				<h5
-					className='mb-2 text-3xl font-bold tracking-wide text-fg dark:text-white capitalize drop-shadow-md'
+					className='mb-2 text-3xl font-bold tracking-wide text-fg dark:text-white capitalize drop-shadow-md max-xl:text-2xl'
 					data-atropos-offset='2'
 				>
 					{name}

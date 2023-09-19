@@ -5,8 +5,7 @@
 Pokemon themed memory card game, avoid picking the same card twice to get a satisfying victory!
 
 ## Demo:
-
-<!-- https://github.com/modMars/WeatherStorm/assets/90658669/8ad5d5f1-9d98-4cbe-9430-5a617ce17926 -->
+https://github.com/modMars/memory-mon/assets/90658669/cfe2fd28-18da-4381-9492-553642de46c6
 
 ## Key Features
 

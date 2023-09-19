@@ -15,7 +15,7 @@
 }
 
 .bg-wrapper {
-	background-image: url(../src/assets/mainBg.webp);
+	background-image: url(../assets/mainBg.webp);
 	background-size: cover;
 	background-position: center;
 	background-attachment: fixed;

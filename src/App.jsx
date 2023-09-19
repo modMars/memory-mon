@@ -9,8 +9,9 @@ import LoadingScreen from './LoadingScreen'
 import Navbar from './Navbar'
 import Score from './Score'
 import { Game } from './game'
-import { pickRandomPokemon, pokemonID } from './pokemon'
+import { clearPokemonID, fillPokemonID, pickRandomPokemon, pokemonID } from './pokemon'
 
+//Create a new game so we can access the IIFE's
 const newGame = Game
 const handleAnimation = cards => {
 	cards.forEach(card => {
@@ -18,6 +19,7 @@ const handleAnimation = cards => {
 		card.classList.toggle('disabled')
 	})
 }
+fillPokemonID(6)
 
 function App() {
 	const [pokemon, setPokemon] = useState([])
@@ -26,6 +28,7 @@ function App() {
 	const [lostGame, setLostGame] = useState(false)
 	const [wonGame, setWonGame] = useState(false)
 
+	//When pokemonID changes we make a request to the pokeAPI
 	useEffect(() => {
 		const fetchData = async () => {
 			const fetchPromises = pokemonID.map(async id => {
@@ -48,7 +51,7 @@ function App() {
 			}
 		}
 		fetchData()
-	}, [])
+	}, [pokemonID])
 
 	useEffect(() => {
 		if (isFetched === true) {
@@ -58,11 +61,10 @@ function App() {
 
 	const handleClick = e => {
 		const currentCard = e.target.parentElement.attributes.name.nodeValue
-
-		if (newGame.chosenCards[currentCard] != true) {
-			newGame.checkAndUpdate(currentCard)
-			newGame.addScore()
-			if (newGame.getScore() === 5) {
+		if (Game.chosenCards[currentCard] != true) {
+			Game.checkAndUpdate(currentCard)
+			Game.addScore()
+			if (Game.getScore() === 5) {
 				setWonGame(true)
 				return
 			}
@@ -77,8 +79,8 @@ function App() {
 
 	const handleRestart = e => {
 		const cards = document.querySelectorAll('.atropos')
-		newGame.resetScore()
-		newGame.resetCards()
+		Game.resetScore()
+		Game.resetCards()
 		setLostGame(false)
 		setWonGame(false)
 		handleAnimation(cards)
@@ -96,12 +98,10 @@ function App() {
 				</>
 			) : (
 				<>
-					<div className='bg-wrapper w-full min-h-full absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] blur brightness-50 -z-10'>
-						{/* <img className='w-full h-full object-cover' src='./src/assets/mainBg.jpg' alt='' /> */}
-					</div>
-					<Navbar></Navbar>
-					<Score currentScore={newGame.getScore()}></Score>
-					<main className='flex flex-wrap justify-evenly min-h-[30rem] w-full max-w[30rem] h-full px-4 py-24 gap-8'>
+					<div className='bg-wrapper w-full min-h-full absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] blur brightness-50 -z-10'></div>
+					<Navbar handleRestart={handleRestart}></Navbar>
+					<Score currentScore={Game.getScore()}></Score>
+					<main className='flex flex-wrap justify-evenly my-0 mx-auto w-full max-w-[1500px] h-full py-24 gap-8'>
 						{randomPokes &&
 							randomPokes.map(pkmnObject => {
 								return (

@@ -1,5 +1,18 @@
-const pokemonID = [25, 6, 94, 143, 133, 38, 445, 448, 150, 131]
+//Array with random pokemon ID's (Used to fetch pokemon from the pokeAPI)
+const pokemonID = []
 
+const fillPokemonID = amount => {
+	for (let i = 0; i < amount; i++) {
+		//Get random pokemon id's from 1 all the way to 493 (Sinnoh region)
+		pokemonID.push(Math.floor(Math.random() * 493))
+	}
+}
+
+const clearPokemonID = () => {
+	pokemonID.length = 0
+}
+
+//Returns a 5 pokemon array with no duplicates
 const pickRandomPokemon = pokemon => {
 	let newArr = []
 	let contains = {}
@@ -20,4 +33,4 @@ const pickRandomPokemon = pokemon => {
 	return randomPokemon
 }
 
-export { pickRandomPokemon, pokemonID }
+export { clearPokemonID, fillPokemonID, pickRandomPokemon, pokemonID }

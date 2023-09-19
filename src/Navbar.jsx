@@ -1,6 +1,6 @@
-export default function Navbar() {
+export default function Navbar({ handleRestart }) {
 	return (
-		<nav className='flex gap-4 justify-between px-40 py-10 mb-12 w-full max-sm:justify-center max-sm:px-0'>
+		<nav className='flex gap-4 justify-between px-40 py-10 mb-12 w-full max-w-[1500px] max-sm:justify-center max-sm:px-0'>
 			<h1 className='text-3xl self-center max-sm:hidden text-white font-bold drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]'>
 				Memory-mon
 			</h1>
@@ -15,7 +15,8 @@ export default function Navbar() {
 					viewBox='0 0 595.3 594.1'
 					style={{ enableBackground: 'new 0 0 595.3 594.1' }}
 					xmlSpace='preserve'
-					className='w-16 h-16'
+					className='w-16 h-16 cursor-pointer'
+					onClick={handleRestart}
 				>
 					<g id='Pokéball_1_'>
 						<g id='Colours'>

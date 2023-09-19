@@ -1,4 +1,7 @@
 #root {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	position: relative;
 	margin: 0 auto;
 	padding: 0;
@@ -8,6 +11,7 @@
 	overflow-x: hidden;
 	background: transparent;
 	color: #fcfff5;
+	padding: 0 2rem;
 }
 
 .bg-wrapper {
@@ -18,7 +22,7 @@
 }
 
 .atropos {
-	transition: opacity 0.3s ease-in-out;
+	transition: opacity 0.25s ease-in-out;
 }
 
 .card {
@@ -43,7 +47,7 @@
 
 .won.appear,
 .lost.appear {
-	animation: appear 0.25s ease forwards;
+	animation: appear 0.2s ease forwards;
 }
 
 @keyframes appear {
